@@ -17,8 +17,8 @@ function App() {
   const [todos, setTodos] = useState([
     {
       sno : "1",
-      title : "My Name is Khan",
-      desc : "And I am not a terrist"
+      title : "Do Plant Water",
+      desc : "Have to give water to all plant"
     },
     {
       sno : "2",
@@ -27,8 +27,13 @@ function App() {
     },
     {
       sno : "3",
-      title : "9793820174",
-      desc : "I have to call mom"
+      title : "Call and talk to Family",
+      desc : "Make a Call to parents"
+    },
+    {
+      sno : "4",
+      title : "Read Book",
+      desc : "Need to complete 4 Pages of Atomic Habits"
     }
   ]);
   return ( 
