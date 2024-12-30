@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-const AddTodo = () => {
+const AddTodo = (props) => {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
     const submit = ((e)=>{
@@ -8,10 +8,10 @@ const AddTodo = () => {
             alert("Can not blank Anyone");
             return false;
         }
-        AddTodo(title, desc);
+        props.addTodo(title, desc);
     });
   return (
-    <div class="container">
+    <div className="container">
         <form onSubmit={submit} >
             <h3 className="my-3">Add Todo</h3>
             <div className="mb-3">
