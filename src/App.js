@@ -3,7 +3,14 @@ import Header from "./MyComponents/Header";
 import Todos from "./MyComponents/Todos";
 import Footer from "./MyComponents/Footer";
 import AddTodo from "./MyComponents/AddTodo";
-import React, { useState } from 'react';
+import About from "./MyComponents/About";
+import React, { useState, useEffect, use } from 'react';
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route 
+} from "react-router-dom";
 
 function App() {
   let initTodo;
@@ -13,8 +20,7 @@ function App() {
     initTodo = JSON.parse(localStorage.getItem("todos"));
   }
 
-  const onDelete = (todo) =>{
-  console.log("Hi I am Delete of ", todo);
+  const onDelete = (todo) =>{ 
     // This way is not working
     // let index = todos.indexOf(todo);
     // todos.splice(index, true);
@@ -26,7 +32,7 @@ function App() {
 
   const addTodo = (title, desc) =>{
     let sno;
-    if(todos.length==0){
+    if(todos.length===0){
       sno = 1;
     }else{
       sno = todos[todos.length-1].sno+1;
@@ -37,16 +43,25 @@ function App() {
       desc:desc,
     }
     setTodos([...todos, myTodo]);
-    console.log(myTodo);
-    localStorage.setItem("todos",JSON.stringify(todos));
+    console.log(myTodo); 
   }; 
   const [todos, setTodos] = useState(initTodo);
+  useEffect(() => {
+    localStorage.setItem("todos",JSON.stringify(todos)); 
+  },[todos])
   return ( 
     <>
+    <Router>
     <Header title="My Todos List" searchBar="false" /> 
-    <AddTodo addTodo={addTodo}/>
-    <Todos todos={todos} onDelete={onDelete}/> 
+    <Routes>
+      <Route path="/" element={<>
+        <AddTodo addTodo={addTodo} />
+        <Todos todos={todos} onDelete={onDelete} />
+        </>} />
+      <Route exact path="/About" element={<About />} />
+    </Routes> 
     <Footer /> 
+    </Router>
     </>
   );
 }

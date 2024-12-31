@@ -9,6 +9,8 @@ const AddTodo = (props) => {
             return false;
         }
         props.addTodo(title, desc);
+        setTitle("");
+        setDesc("");
     });
   return (
     <div className="container">
